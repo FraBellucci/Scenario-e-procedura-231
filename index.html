@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scenario e Procedure 231 - Modulo 5</title>
+    <title>Collega le Situazioni - Modulo 5</title>
     <style>
         * {
             margin: 0;
@@ -27,320 +27,211 @@
             overflow: hidden;
         }
 
-        .header {
+        h1 { font-size: 15px; }
+        h2 { font-size: 13px; }
+        h3 { font-size: 11px; }
+        p { font-size: 10px; line-height: 1.4; }
+
+        /* Intro Page */
+        .intro-page {
             background: white;
             border-radius: 10px;
-            padding: 8px 10px;
-            margin-bottom: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        h1 {
-            color: #667eea;
-            font-size: 1.4em;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 0.85em;
-            margin-bottom: 10px;
-        }
-
-        .stats {
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            height: 100%;
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
-        .stat-box {
-            background: #f0f4ff;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            color: #667eea;
-            font-size: 0.85em;
+        .intro-page.hidden {
+            display: none;
         }
 
-        .reset-btn {
+        .intro-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .intro-page h1 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .intro-instructions {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            max-width: 600px;
+        }
+
+        .intro-instructions p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .start-btn {
             background: #667eea;
             color: white;
             border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 0.85em;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            margin-top: 20px;
         }
 
-        .reset-btn:hover {
+        .start-btn:hover {
             background: #5568d3;
-        }
-
-        /* Pages */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Scenarios Page */
-        .scenarios-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 8px;
-            height: 370px;
-        }
-
-        .scenario-card {
-            background: white;
-            border-radius: 10px;
-            padding: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-            overflow-y: auto;
-        }
-
-        .scenario-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .scenario-icon {
-            font-size: 1.5em;
-        }
-
-        .scenario-title {
-            font-size: 1em;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .scenario-description {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            border-left: 3px solid #667eea;
-            line-height: 1.4;
-            font-size: 0.85em;
-        }
-
-        .scenario-choices {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .choice-option {
-            padding: 8px 10px;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            font-size: 0.8em;
-        }
-
-        .choice-option:hover:not(.disabled) {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
-
-        .choice-option.disabled {
-            cursor: not-allowed;
-        }
-
-        .choice-option.correct {
-            border-color: #10b981;
-            background: #d1fae5;
-            font-weight: bold;
-        }
-
-        .choice-option.wrong {
-            border-color: #ef4444;
-            background: #fee2e2;
-            opacity: 0.6;
-        }
-
-        .scenario-feedback {
-            margin-top: 8px;
-            padding: 8px;
-            border-radius: 6px;
-            display: none;
-            font-weight: 500;
-            font-size: 0.8em;
-        }
-
-        .scenario-feedback.show {
-            display: block;
-            animation: slideDown 0.3s;
-        }
-
-        .scenario-feedback.correct {
-            background: #d1fae5;
-            color: #065f46;
-            border-left: 3px solid #10b981;
-        }
-
-        .scenario-feedback.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-            border-left: 3px solid #ef4444;
-        }
-
-        /* Procedure Page */
-        .procedure-section {
-            background: white;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-            height: 370px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .procedure-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .procedure-icon {
-            font-size: 1.5em;
-        }
-
-        .procedure-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .procedure-instruction {
-            background: #f0f4ff;
-            padding: 8px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            color: #667eea;
-            font-weight: 500;
-            font-size: 0.8em;
-        }
-
-        .procedure-area {
-            display: flex;
-            gap: 15px;
-            flex: 1;
-        }
-
-        .steps-pool, .drop-zone {
-            flex: 1;
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 8px;
-            overflow-y: auto;
-        }
-
-        .steps-pool h3, .drop-zone h3 {
-            color: #667eea;
-            margin-bottom: 8px;
-            font-size: 0.9em;
-        }
-
-        .drop-zone {
-            border: 2px dashed #ddd;
-        }
-
-        .drop-zone.drag-over {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
-
-        .step-card {
-            background: white;
-            padding: 8px 10px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            cursor: move;
-            border-left: 3px solid #667eea;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            font-size: 0.8em;
-        }
-
-        .step-card:hover {
             transform: translateY(-2px);
         }
 
-        .step-card.dragging {
-            opacity: 0.5;
-        }
-
-        .check-btn {
-            margin-top: 8px;
-            width: auto;
-            padding: 8px 30px;
-            align-self: center;
-        }
-
-        .procedure-feedback {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.8em;
+        /* Game Page */
+        .game-page {
             display: none;
         }
 
-        .procedure-feedback.show {
+        .game-page.active {
             display: block;
-            animation: slideDown 0.3s;
         }
 
-        .procedure-feedback.correct {
-            background: #d1fae5;
-            color: #065f46;
-            border-left: 3px solid #10b981;
-        }
-
-        .procedure-feedback.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-            border-left: 3px solid #ef4444;
-        }
-
-        /* Navigation */
-        .navigation {
+        .header {
+            background: white;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
-            gap: 10px;
+            align-items: center;
         }
 
-        .nav-btn {
+        .header h1 {
+            color: #667eea;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
             background: #667eea;
             color: white;
             border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-size: 0.9em;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 10px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        .nav-btn:hover:not(:disabled) {
+        .btn:hover {
             background: #5568d3;
         }
 
-        .nav-btn:disabled {
+        .btn:disabled {
             background: #d1d5db;
             cursor: not-allowed;
+        }
+
+        /* Matching Area */
+        .matching-area {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            height: 485px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .column h2 {
+            color: #667eea;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .match-item {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .match-item p {
+            font-size: 10px;
+        }
+
+        .match-item:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .match-item.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .match-item.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+            color: #065f46;
+            cursor: default;
+        }
+
+        .match-item.wrong {
+            border-color: #ef4444;
+            background: #fee2e2;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .feedback.error {
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         .victory {
@@ -350,368 +241,270 @@
             text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             display: none;
-            margin-top: 10px;
         }
 
         .victory.show {
             display: block;
-            animation: slideDown 0.5s;
         }
 
         .victory h2 {
             color: #10b981;
-            font-size: 2em;
+            font-size: 20px;
             margin-bottom: 10px;
         }
 
         .victory-emoji {
-            font-size: 3.5em;
+            font-size: 50px;
             margin-bottom: 15px;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>💼 Scenario e Procedure 231</h1>
-           
-            <div class="stats">
-                <div class="stat-box">Pagina: <span id="pageNum">1</span>/2</div>
-                <button class="reset-btn" onclick="resetGame()">🔄 Ricomincia</button>
-                <button class="reset-btn" onclick="window.close()" style="background: #6b7280;">← Torna al corso</button>
+        <!-- INTRO PAGE -->
+        <div class="intro-page" id="introPage">
+            <div class="intro-icon">🎯</div>
+            <h1>Collega le Situazioni</h1>
+            
+            <div class="intro-instructions">
+                <p><strong>Come si gioca:</strong></p>
+                <p>1. Clicca su una situazione a sinistra</p>
+                <p>2. Poi clicca sul comportamento corretto a destra</p>
+                <p>3. Se è giusto, entrambi diventeranno verdi!</p>
+                <p>4. Completa tutti e 5 gli abbinamenti</p>
             </div>
+
+            <button class="start-btn" onclick="startGame()">🚀 Comincia</button>
         </div>
 
-        <!-- PAGE 1: Scenarios -->
-        <div id="page1" class="page active">
-            <div class="scenarios-grid">
-                <!-- Scenario 1 -->
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-icon">💳</div>
-                        <div class="scenario-title">Scenario 1</div>
-                    </div>
-                    <div class="scenario-description">
-                        Un fornitore abituale ti contatta via email chiedendo di modificare l'IBAN per il prossimo pagamento, indicando coordinate bancarie diverse da quelle registrate. Cosa fai?
-                    </div>
-                    <div class="scenario-choices">
-                        <div class="choice-option" onclick="checkScenario(1, 1)">
-                            Modifico l'IBAN e procedo con il pagamento
-                        </div>
-                        <div class="choice-option" onclick="checkScenario(1, 2)">
-                            Verifico telefonicamente con il fornitore prima di procedere
-                        </div>
-                        <div class="choice-option" onclick="checkScenario(1, 3)">
-                            Ignoro la richiesta e pago sul vecchio IBAN
-                        </div>
-                    </div>
-                    <div class="scenario-feedback" id="feedback-1"></div>
-                </div>
-
-                <!-- Scenario 2 -->
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-icon">💰</div>
-                        <div class="scenario-title">Scenario 2</div>
-                    </div>
-                    <div class="scenario-description">
-                        Un cliente ti propone di pagare una fattura di 1.800€ in contanti. Come ti comporti?
-                    </div>
-                    <div class="scenario-choices">
-                        <div class="choice-option" onclick="checkScenario(2, 1)">
-                            Accetto il pagamento in contanti
-                        </div>
-                        <div class="choice-option" onclick="checkScenario(2, 2)">
-                            Rifiuto e richiedo bonifico o assegno
-                        </div>
-                        <div class="choice-option" onclick="checkScenario(2, 3)">
-                            Accetto ma faccio due ricevute separate da 900€
-                        </div>
-                    </div>
-                    <div class="scenario-feedback" id="feedback-2"></div>
+        <!-- GAME PAGE -->
+        <div class="game-page" id="gamePage">
+            <div class="header">
+                <h1>💼 Collega le Situazioni</h1>
+                <div class="header-buttons">
+                    <button class="btn" onclick="checkMatches()" id="checkBtn">✓ Verifica</button>
+                    <button class="btn" onclick="resetGame()">🔄 Ricomincia</button>
+                    <button class="btn" onclick="window.close()" style="background: #6b7280;">← Torna</button>
                 </div>
             </div>
 
-            <div class="navigation">
-                <button class="nav-btn" disabled>← Indietro</button>
-                <button class="nav-btn" onclick="goToPage(2)" id="nextBtn">Avanti →</button>
+            <div class="matching-area">
+                <div class="column">
+                    <h2>Situazioni</h2>
+                    <div class="match-item" onclick="selectLeft(1)" id="left-1">
+                        <p>Fornitore chiede nuovo IBAN via email</p>
+                    </div>
+                    <div class="match-item" onclick="selectLeft(2)" id="left-2">
+                        <p>Cliente vuole pagare 1.800€ in contanti</p>
+                    </div>
+                    <div class="match-item" onclick="selectLeft(3)" id="left-3">
+                        <p>Ricevi email sospetta con allegato .exe</p>
+                    </div>
+                    <div class="match-item" onclick="selectLeft(4)" id="left-4">
+                        <p>Collega chiede la tua password per urgenza</p>
+                    </div>
+                    <div class="match-item" onclick="selectLeft(5)" id="left-5">
+                        <p>Noti un accesso non autorizzato al sistema</p>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Comportamenti Corretti</h2>
+                    <div class="match-item" onclick="selectRight(1)" id="right-1">
+                        <p>Verifico telefonicamente con numeri noti</p>
+                    </div>
+                    <div class="match-item" onclick="selectRight(2)" id="right-2">
+                        <p>Rifiuto e chiedo bonifico o assegno</p>
+                    </div>
+                    <div class="match-item" onclick="selectRight(3)" id="right-3">
+                        <p>Non apro e segnalo subito all'IT</p>
+                    </div>
+                    <div class="match-item" onclick="selectRight(4)" id="right-4">
+                        <p>Rifiuto e contatto l'IT direttamente</p>
+                    </div>
+                    <div class="match-item" onclick="selectRight(5)" id="right-5">
+                        <p>Disconnetto e informo il responsabile IT</p>
+                    </div>
+                </div>
             </div>
+
+            <div class="feedback" id="feedback"></div>
         </div>
 
-        <!-- PAGE 2: Procedure -->
-        <div id="page2" class="page">
-           <div class="procedure-section">
-                <div class="procedure-header">
-                    <div class="procedure-icon">🔒</div>
-                    <h2>Procedura: Gestione Data Breach</h2>
-                </div>
-                <div class="procedure-instruction">
-                    💡 Trascina gli step nella sequenza corretta per gestire un data breach
-                </div>
-
-                <div class="procedure-area">
-                    <div class="steps-pool">
-                        <h3>📋 Step disponibili</h3>
-                        <div id="stepsPool"></div>
-                    </div>
-
-                    <div class="drop-zone" id="dropZone">
-                        <h3>✓ Sequenza corretta</h3>
-                    </div>
-                </div>
-
-                <button class="reset-btn check-btn" onclick="checkProcedure()">✓ Verifica Procedura</button>
-                <div class="procedure-feedback" id="procedureFeedback"></div>
-            </div>
-
-            <div class="navigation" style="margin-top: 10px;">
-                <button class="nav-btn" onclick="goToPage(1)">← Indietro</button>
-                <button class="nav-btn" disabled>Avanti →</button>
-            </div>
-        </div>
-
-        <div id="victory" class="victory">
+        <div class="victory" id="victory">
             <div class="victory-emoji">🎉</div>
-            <h2>Ottimo lavoro!</h2>
-            <p style="font-size: 1.1em; color: #666; margin-bottom: 15px;">
-                Hai completato tutti gli scenari e la procedura correttamente!
-            </p>
-            <button class="reset-btn" onclick="resetGame()">Gioca ancora</button>
+            <h2>Complimenti!</h2>
+            <p style="font-size: 14px; margin: 15px 0;">Hai completato tutti gli abbinamenti correttamente!</p>
+            <button class="start-btn" onclick="resetGame()">Gioca ancora</button>
         </div>
     </div>
 
-    <script>
-        const scenarios = {
-            1: {
-                correct: 2,
-                feedback: {
-                    1: '❌ Sbagliato! Mai modificare dati bancari solo su richiesta email. Potrebbe essere un tentativo di frode (Business Email Compromise).',
-                    2: '✅ Corretto! Verificare sempre telefonicamente usando i numeri già in possesso dell\'azienda, mai quelli forniti nell\'email sospetta.',
-                    3: '❌ Sbagliato! Ignorare può creare problemi se la richiesta è legittima. Bisogna sempre verificare telefonicamente.'
-                }
-            },
-            2: {
-                correct: 2,
-                feedback: {
-                    1: '❌ Sbagliato! In Italia il limite per pagamenti in contanti tra professionisti è 1.000€. Accettare 1.800€ in contanti è illegale.',
-                    2: '✅ Corretto! Oltre i 1.000€ è obbligatorio usare mezzi tracciabili (bonifico, assegno, carta). Rifiutare è l\'unica opzione legale.',
-                    3: '❌ Sbagliato! Frazionare il pagamento per aggirare il limite è reato. La normativa antiriciclaggio lo vieta espressamente.'
-                }
-            }
+   <script>
+        const correctMatches = {
+            1: 1, // Fornitore IBAN → Verifica telefonica
+            2: 2, // 1800€ cash → Rifiuto bonifico
+            3: 3, // Email .exe → Non apro segnalo
+            4: 4, // Password → Rifiuto contatto IT
+            5: 5  // Accesso non autorizzato → Disconnetto informo
         };
 
-        const procedureSteps = [
-            { id: 1, text: 'Disconnetti immediatamente il dispositivo dalla rete', order: 1 },
-            { id: 2, text: 'Informa il responsabile IT o il referente tecnico', order: 2 },
-            { id: 3, text: 'Conserva tutte le evidenze e i log di sistema', order: 3 },
-            { id: 4, text: 'Segnala l\'incidente all\'Organismo di Vigilanza', order: 4 },
-            { id: 5, text: 'Compila il report dell\'incidente con data e ora', order: 5 },
-            { id: 6, text: 'Collabora con il DPO per valutare la notifica al Garante', order: 6 }
-        ];
+        let selectedLeft = null;
+        let selectedRight = null;
+        let matches = {};
+        let correctCount = 0;
+        let shuffledLeft = [];
+        let shuffledRight = [];
 
-        let completedScenarios = [];
-        let procedureCompleted = false;
-        let placedSteps = [];
-        let currentPage = 1;
-
-        function initGame() {
-            completedScenarios = [];
-            procedureCompleted = false;
-            placedSteps = [];
-            currentPage = 1;
-            
-            // Reset scenarios
-            document.querySelectorAll('.choice-option').forEach(opt => {
-                opt.classList.remove('correct', 'wrong', 'disabled');
-            });
-            document.querySelectorAll('.scenario-feedback').forEach(fb => {
-                fb.classList.remove('show');
-            });
-
-            // Reset procedure
-            renderProcedure();
-            document.getElementById('procedureFeedback').classList.remove('show');
-            document.getElementById('victory').classList.remove('show');
-            
-            goToPage(1);
-            updateProgress();
-        }
-
-        function goToPage(pageNum) {
-            currentPage = pageNum;
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(`page${pageNum}`).classList.add('active');
-            document.getElementById('pageNum').textContent = pageNum;
-        }
-
-        function checkScenario(scenarioId, choice) {
-            if (completedScenarios.includes(scenarioId)) return;
-
-            const scenario = scenarios[scenarioId];
-            const card = document.querySelector(`#feedback-${scenarioId}`).closest('.scenario-card');
-            const options = card.querySelectorAll('.choice-option');
-            const feedback = document.getElementById(`feedback-${scenarioId}`);
-
-            const isCorrect = choice === scenario.correct;
-            
-            completedScenarios.push(scenarioId);
-
-            // Disable all options
-            options.forEach(opt => opt.classList.add('disabled'));
-
-            // Mark correct/wrong
-            options[choice - 1].classList.add(isCorrect ? 'correct' : 'wrong');
-            if (!isCorrect) {
-                options[scenario.correct - 1].classList.add('correct');
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
             }
-
-            // Show feedback
-            feedback.textContent = scenario.feedback[choice];
-            feedback.className = `scenario-feedback ${isCorrect ? 'correct' : 'wrong'} show`;
-
-            updateProgress();
-            checkVictory();
+            return arr;
         }
 
-        function renderProcedure() {
-            const pool = document.getElementById('stepsPool');
-            const dropZone = document.getElementById('dropZone');
-            
-            pool.innerHTML = '';
-            dropZone.innerHTML = '<h3>✓ Sequenza corretta</h3>';
-            
-            // Shuffle steps
-            const shuffled = [...procedureSteps].sort(() => Math.random() - 0.5);
-            
-            shuffled.forEach(step => {
-                const card = createStepCard(step);
-                pool.appendChild(card);
+        function startGame() {
+            // Shuffle positions
+            shuffledLeft = shuffle([1, 2, 3, 4, 5]);
+            shuffledRight = shuffle([1, 2, 3, 4, 5]);
+
+            // Rearrange left column
+            const leftColumn = document.querySelector('.column:first-child');
+            const leftItems = Array.from(leftColumn.querySelectorAll('.match-item'));
+            leftColumn.innerHTML = '<h2>Situazioni</h2>';
+            shuffledLeft.forEach(id => {
+                leftColumn.appendChild(leftItems[id - 1]);
             });
 
-            setupDropZone();
+            // Rearrange right column
+            const rightColumn = document.querySelector('.column:last-child');
+            const rightItems = Array.from(rightColumn.querySelectorAll('.match-item'));
+            rightColumn.innerHTML = '<h2>Comportamenti Corretti</h2>';
+            shuffledRight.forEach(id => {
+                rightColumn.appendChild(rightItems[id - 1]);
+            });
+
+            document.getElementById('introPage').classList.add('hidden');
+            document.getElementById('gamePage').classList.add('active');
         }
+        function selectLeft(id) {
+            const item = document.getElementById(`left-${id}`);
+            if (item.classList.contains('correct')) return;
 
-        function createStepCard(step) {
-            const card = document.createElement('div');
-            card.className = 'step-card';
-            card.draggable = true;
-            card.dataset.id = step.id;
-            card.dataset.order = step.order;
-            card.textContent = step.text;
-
-            card.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('stepId', step.id);
-                card.classList.add('dragging');
-            });
-
-            card.addEventListener('dragend', () => {
-                card.classList.remove('dragging');
-            });
-
-            return card;
-        }
-
-        function setupDropZone() {
-            const dropZone = document.getElementById('dropZone');
-
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('drag-over');
-            });
-
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('drag-over');
-            });
-
-            dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('drag-over');
-                
-                const stepId = parseInt(e.dataTransfer.getData('stepId'));
-                const step = procedureSteps.find(s => s.id === stepId);
-                
-                if (step && !placedSteps.includes(stepId)) {
-                    placedSteps.push(stepId);
-                    const card = createStepCard(step);
-                    card.onclick = () => removeStep(stepId, card);
-                    card.style.cursor = 'pointer';
-                    dropZone.appendChild(card);
-                    
-                    // Remove from pool
-                    const poolCard = document.querySelector(`#stepsPool [data-id="${stepId}"]`);
-                    if (poolCard) poolCard.remove();
+            // Deselect previous
+            document.querySelectorAll('.column:first-child .match-item').forEach(el => {
+                if (!el.classList.contains('correct')) {
+                    el.classList.remove('selected');
                 }
             });
+
+            selectedLeft = id;
+            item.classList.add('selected');
+
+            // Check if right is already selected
+            if (selectedRight !== null) {
+                tryMatch();
+            }
         }
 
-        function removeStep(stepId, cardElement) {
-            placedSteps = placedSteps.filter(id => id !== stepId);
-            cardElement.remove();
-            
-            const step = procedureSteps.find(s => s.id === stepId);
-            const card = createStepCard(step);
-            document.getElementById('stepsPool').appendChild(card);
+        function selectRight(id) {
+            const item = document.getElementById(`right-${id}`);
+            if (item.classList.contains('correct')) return;
+
+            // Deselect previous
+            document.querySelectorAll('.column:last-child .match-item').forEach(el => {
+                if (!el.classList.contains('correct')) {
+                    el.classList.remove('selected');
+                }
+            });
+
+            selectedRight = id;
+            item.classList.add('selected');
+
+            // Check if left is already selected
+            if (selectedLeft !== null) {
+                tryMatch();
+            }
         }
 
-        function checkProcedure() {
-            if (placedSteps.length !== procedureSteps.length) {
-                alert('Posiziona tutti gli step prima di verificare!');
-                return;
+        function tryMatch() {
+            const leftItem = document.getElementById(`left-${selectedLeft}`);
+            const rightItem = document.getElementById(`right-${selectedRight}`);
+
+            if (correctMatches[selectedLeft] === selectedRight) {
+                // Correct match!
+                leftItem.classList.remove('selected');
+                leftItem.classList.add('correct');
+                rightItem.classList.remove('selected');
+                rightItem.classList.add('correct');
+
+                matches[selectedLeft] = selectedRight;
+                correctCount++;
+
+                showFeedback('✅ Corretto!', 'success');
+
+                if (correctCount === 5) {
+                    setTimeout(() => {
+                        document.getElementById('victory').classList.add('show');
+                    }, 500);
+                }
+            } else {
+                // Wrong match
+                leftItem.classList.add('wrong');
+                rightItem.classList.add('wrong');
+
+                showFeedback('❌ Sbagliato! Riprova', 'error');
+
+                setTimeout(() => {
+                    leftItem.classList.remove('selected', 'wrong');
+                    rightItem.classList.remove('selected', 'wrong');
+                }, 1000);
             }
 
-            const feedback = document.getElementById('procedureFeedback');
-            let isCorrect = true;
+            selectedLeft = null;
+            selectedRight = null;
+        }
 
-            for (let i = 0; i < placedSteps.length; i++) {
-                const step = procedureSteps.find(s => s.id === placedSteps[i]);
-                if (step.order !== i + 1) {
-                    isCorrect = false;
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.className = `feedback ${type} show`;
+
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 2000);
+        }
+
+        function checkMatches() {
+            let allCorrect = true;
+            for (let i = 1; i <= 5; i++) {
+                if (!matches[i] || matches[i] !== correctMatches[i]) {
+                    allCorrect = false;
                     break;
                 }
             }
 
-            if (isCorrect) {
-                feedback.textContent = '✅ Perfetto! La sequenza è corretta. Questa è la procedura standard per gestire un data breach in modo efficace e conforme al GDPR.';
-                feedback.className = 'procedure-feedback correct show';
-                procedureCompleted = true;
-                updateProgress();
-                checkVictory();
+            if (allCorrect && correctCount === 5) {
+                showFeedback('🎉 Tutti gli abbinamenti corretti!', 'success');
             } else {
-                feedback.textContent = '❌ La sequenza non è corretta. Riprova! Pensa alla logica: prima metti in sicurezza, poi informi, documenti e notifichi.';
-                feedback.className = 'procedure-feedback wrong show';
-            }
-        }
-
-        function updateProgress() {
-            const total = completedScenarios.length + (procedureCompleted ? 1 : 0);
-            document.getElementById('progress').textContent = total;
-        }
-
-        function checkVictory() {
-            if (completedScenarios.length === 2 && procedureCompleted) {
-                setTimeout(() => {
-                    document.getElementById('victory').classList.add('show');
-                }, 500);
+                showFeedback(`Hai completato ${correctCount}/5 abbinamenti`, 'error');
             }
         }
 
         function resetGame() {
-            initGame();
-        }
+            selectedLeft = null;
+            selectedRight = null;
+            matches = {};
+            correctCount = 0;
 
-        // Start game
-        initGame();
+            document.querySelectorAll('.match-item').forEach(el => {
+                el.classList.remove('selected', 'correct', 'wrong');
+            });
+
+            document.getElementById('feedback').classList.remove('show');
+            document.getElementById('victory').classList.remove('show');
+        }
     </script>
 </body>
 </html>
