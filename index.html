@@ -27,10 +27,10 @@
             overflow: hidden;
         }
 
-        h1 { font-size: 17px; }
-        h2 { font-size: 15px; }
-        h3 { font-size: 13px; }
-        p { font-size: 11px; line-height: 2; }
+        h1 { font-size: 15px; }
+        h2 { font-size: 13px; }
+        h3 { font-size: 11px; }
+        p { font-size: 10px; line-height: 1.4; }
 
         /* Intro Page */
         .intro-page {
@@ -149,9 +149,16 @@
             border-radius: 10px;
             padding: 15px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-            height: 485px;
+            height: 430px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .columns-container {
             display: flex;
             gap: 20px;
+            flex: 1;
         }
 
         .column {
@@ -178,7 +185,8 @@
         }
 
         .match-item p {
-            font-size: 10px;
+            font-size: 12px;
+            line-height: 1.4;
         }
 
         .match-item:hover {
@@ -212,11 +220,11 @@
         }
 
         .feedback {
-            margin-top: 10px;
-            padding: 8px;
+            padding: 10px;
             border-radius: 6px;
             text-align: center;
             font-weight: bold;
+            font-size: 12px;
             display: none;
         }
 
@@ -241,10 +249,21 @@
             text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            z-index: 100;
         }
 
         .victory.show {
             display: block;
+        }
+
+        .container {
+            position: relative;
         }
 
         .victory h2 {
@@ -284,51 +303,53 @@
                 <div class="header-buttons">
                     <button class="btn" onclick="checkMatches()" id="checkBtn">✓ Verifica</button>
                     <button class="btn" onclick="resetGame()">🔄 Ricomincia</button>
-                    <button class="btn" onclick="window.close()" style="background: #6b7280;">← Torna</button>
+                    
                 </div>
             </div>
 
             <div class="matching-area">
-                <div class="column">
-                    <h2>Situazioni</h2>
-                    <div class="match-item" onclick="selectLeft(1)" id="left-1">
-                        <p>Fornitore chiede nuovo IBAN via email</p>
+                <div class="columns-container">
+                    <div class="column">
+                        <h2>Situazioni</h2>
+                        <div class="match-item" onclick="selectLeft(1)" id="left-1">
+                            <p>Fornitore chiede nuovo IBAN via email</p>
+                        </div>
+                        <div class="match-item" onclick="selectLeft(2)" id="left-2">
+                            <p>Cliente vuole pagare 1.800€ in contanti</p>
+                        </div>
+                        <div class="match-item" onclick="selectLeft(3)" id="left-3">
+                            <p>Ricevi email sospetta con allegato .exe</p>
+                        </div>
+                        <div class="match-item" onclick="selectLeft(4)" id="left-4">
+                            <p>Collega chiede la tua password per urgenza</p>
+                        </div>
+                        <div class="match-item" onclick="selectLeft(5)" id="left-5">
+                            <p>Noti un accesso non autorizzato al sistema</p>
+                        </div>
                     </div>
-                    <div class="match-item" onclick="selectLeft(2)" id="left-2">
-                        <p>Cliente vuole pagare 1.800€ in contanti</p>
-                    </div>
-                    <div class="match-item" onclick="selectLeft(3)" id="left-3">
-                        <p>Ricevi email sospetta con allegato .exe</p>
-                    </div>
-                    <div class="match-item" onclick="selectLeft(4)" id="left-4">
-                        <p>Collega chiede la tua password per urgenza</p>
-                    </div>
-                    <div class="match-item" onclick="selectLeft(5)" id="left-5">
-                        <p>Noti un accesso non autorizzato al sistema</p>
+
+                    <div class="column">
+                        <h2>Comportamenti Corretti</h2>
+                        <div class="match-item" onclick="selectRight(1)" id="right-1">
+                            <p>Verifico telefonicamente con numeri noti</p>
+                        </div>
+                        <div class="match-item" onclick="selectRight(2)" id="right-2">
+                            <p>Rifiuto e chiedo bonifico o assegno</p>
+                        </div>
+                        <div class="match-item" onclick="selectRight(3)" id="right-3">
+                            <p>Non apro e segnalo subito all'IT</p>
+                        </div>
+                        <div class="match-item" onclick="selectRight(4)" id="right-4">
+                            <p>Rifiuto e contatto l'IT direttamente</p>
+                        </div>
+                        <div class="match-item" onclick="selectRight(5)" id="right-5">
+                            <p>Disconnetto e informo il responsabile IT</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <h2>Comportamenti Corretti</h2>
-                    <div class="match-item" onclick="selectRight(1)" id="right-1">
-                        <p>Verifico telefonicamente con numeri noti</p>
-                    </div>
-                    <div class="match-item" onclick="selectRight(2)" id="right-2">
-                        <p>Rifiuto e chiedo bonifico o assegno</p>
-                    </div>
-                    <div class="match-item" onclick="selectRight(3)" id="right-3">
-                        <p>Non apro e segnalo subito all'IT</p>
-                    </div>
-                    <div class="match-item" onclick="selectRight(4)" id="right-4">
-                        <p>Rifiuto e contatto l'IT direttamente</p>
-                    </div>
-                    <div class="match-item" onclick="selectRight(5)" id="right-5">
-                        <p>Disconnetto e informo il responsabile IT</p>
-                    </div>
-                </div>
+                <div class="feedback" id="feedback"></div>
             </div>
-
-            <div class="feedback" id="feedback"></div>
         </div>
 
         <div class="victory" id="victory">
@@ -336,10 +357,11 @@
             <h2>Complimenti!</h2>
             <p style="font-size: 14px; margin: 15px 0;">Hai completato tutti gli abbinamenti correttamente!</p>
             <button class="start-btn" onclick="resetGame()">Gioca ancora</button>
+            <button class="start-btn" onclick="window.close()" style="background: #ad03fc;">← Torna al Corso</button>
         </div>
     </div>
 
-   <script>
+    <script>
         const correctMatches = {
             1: 1, // Fornitore IBAN → Verifica telefonica
             2: 2, // 1800€ cash → Rifiuto bonifico
@@ -388,6 +410,7 @@
             document.getElementById('introPage').classList.add('hidden');
             document.getElementById('gamePage').classList.add('active');
         }
+
         function selectLeft(id) {
             const item = document.getElementById(`left-${id}`);
             if (item.classList.contains('correct')) return;
