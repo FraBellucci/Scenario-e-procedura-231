@@ -5,38 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scenario e Procedure 231 - Modulo 5</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+/* 1. MODIFICA: Body per centrare il viewport */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    /* Rimuovi il padding originale per centrare il viewport */
+    padding: 0; 
+    /* Centra il contenuto 800x550 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* 2. NUOVO: Definisce l'area di visualizzazione Fissa (800 x 550) */
+#viewport-800x550 {
+    width: 800px; /* Larghezza target */
+    height: 550px; /* Altezza target */
+    overflow: hidden; 
+    position: relative;
+    /* Sposta il padding di 20px che era sul body qui per mantenere lo spazio intorno al contenuto */
+    padding: 20px; 
+}
 
-        .header {
-            background: white;
-            border-radius: 15px;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
 
-        h1 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 8px;
-        }
+/* 3. MODIFICA: Contenitore originale: Applica Scaling e Centramento */
+.container {
+    max-width: 1200px; /* Mantenuta larghezza originale di design */
+    margin: 0; /* Rimosso margin: 0 auto; non serve più */
+    
+    /* TRASFORMAZIONE CHIAVE: Ridimensiona e Centra */
+    /* Fattore di scala S = 0.6667 (800/1200) */
+    /* Traslazione T = -300px (calcolo di centramento) */
+    transform: scale(0.6667) translateX(-300px);
+    transform-origin: top left;
+    position: relative;
+    height: 100%; /* Permette di riempire l'altezza del viewport scalato */
+}
 
+/* IL RESTO DEL TUO CSS RIMANE ESATTAMENTE COME ORIGINALE */
+
+.header {
+    background: white;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #667eea;
+    font-size: 2em;
+    margin-bottom: 8px;
+}
         .subtitle {
             color: #666;
             font-size: 1em;
@@ -346,37 +375,38 @@
         }
 
         .victory-emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
+    font-size: 4em;
+    margin-bottom: 20px;
+}
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        @media (max-width: 968px) {
-            .scenarios-grid {
-                grid-template-columns: 1fr;
-            }
+@media (max-width: 968px) {
+    .scenarios-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .procedure-area {
-                flex-direction: column;
-            }
+    .procedure-area {
+        flex-direction: column;
+    }
 
-            h1 {
-                font-size: 1.6em;
-            }
-        }
+    h1 {
+        font-size: 1.6em;
+    }
+}
     </style>
 </head>
 <body>
+    <div id="viewport-800x550">
     <div class="container">
         <div class="header">
             <h1>💼 Scenario e Procedure 231</h1>
@@ -471,6 +501,8 @@
             <button class="reset-btn" onclick="resetGame()">Gioca ancora</button>
         </div>
     </div>
+    </div>
+
 
     <script>
         const scenarios = {
