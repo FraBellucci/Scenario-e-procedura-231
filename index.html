@@ -5,366 +5,335 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scenario e Procedure 231 - Modulo 5</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.container {
+    width: 800px;
+    height: 550px;
+    overflow-y: auto;
+}
 
-        .header {
-            background: white;
-            border-radius: 15px;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+.header {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 
-        h1 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 8px;
-        }
+h1 {
+    color: #667eea;
+    font-size: 1.4em;
+    margin-bottom: 5px;
+}
 
-        .subtitle {
-            color: #666;
-            font-size: 1em;
-            margin-bottom: 15px;
-        }
+.subtitle {
+    color: #666;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+}
 
-        .stats {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
+.stats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
-        .stat-box {
-            background: #f0f4ff;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            color: #667eea;
-        }
+.stat-box {
+    background: #f0f4ff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #667eea;
+    font-size: 0.85em;
+}
 
-        .reset-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
+.reset-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
 
-        .reset-btn:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-        }
+.reset-btn:hover {
+    background: #5568d3;
+}
 
-        /* Scenarios Grid */
-        .scenarios-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+.scenarios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
 
-        .scenario-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+.scenario-card {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
 
-        .scenario-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
+.scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
 
-        .scenario-icon {
-            font-size: 2em;
-        }
+.scenario-icon {
+    font-size: 1.5em;
+}
 
-        .scenario-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #333;
-        }
+.scenario-title {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
 
-        .scenario-description {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #667eea;
-            line-height: 1.6;
-        }
+.scenario-description {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 3px solid #667eea;
+    line-height: 1.4;
+    font-size: 0.85em;
+}
 
-        .scenario-choices {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+.scenario-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
-        .choice-option {
-            padding: 12px 15px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-        }
+.choice-option {
+    padding: 8px 10px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    font-size: 0.8em;
+}
 
-        .choice-option:hover:not(.disabled) {
-            border-color: #667eea;
-            background: #f0f4ff;
-            transform: translateX(5px);
-        }
+.choice-option:hover:not(.disabled) {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
 
-        .choice-option.disabled {
-            cursor: not-allowed;
-        }
+.choice-option.disabled {
+    cursor: not-allowed;
+}
 
-        .choice-option.correct {
-            border-color: #10b981;
-            background: #d1fae5;
-            font-weight: bold;
-        }
+.choice-option.correct {
+    border-color: #10b981;
+    background: #d1fae5;
+    font-weight: bold;
+}
 
-        .choice-option.wrong {
-            border-color: #ef4444;
-            background: #fee2e2;
-            opacity: 0.6;
-        }
+.choice-option.wrong {
+    border-color: #ef4444;
+    background: #fee2e2;
+    opacity: 0.6;
+}
 
-        .scenario-feedback {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-            font-weight: 500;
-        }
+.scenario-feedback {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    display: none;
+    font-weight: 500;
+    font-size: 0.8em;
+}
 
-        .scenario-feedback.show {
-            display: block;
-            animation: slideDown 0.3s;
-        }
+.scenario-feedback.show {
+    display: block;
+    animation: slideDown 0.3s;
+}
 
-        .scenario-feedback.correct {
-            background: #d1fae5;
-            color: #065f46;
-            border-left: 4px solid #10b981;
-        }
+.scenario-feedback.correct {
+    background: #d1fae5;
+    color: #065f46;
+    border-left: 3px solid #10b981;
+}
 
-        .scenario-feedback.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-            border-left: 4px solid #ef4444;
-        }
+.scenario-feedback.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 3px solid #ef4444;
+}
 
-        /* Procedure Section */
-        .procedure-section {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+.procedure-section {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
 
-        .procedure-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+.procedure-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
 
-        .procedure-icon {
-            font-size: 2em;
-        }
+.procedure-icon {
+    font-size: 1.5em;
+}
 
-        .procedure-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #333;
-        }
+.procedure-title {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
 
-        .procedure-instruction {
-            background: #f0f4ff;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            color: #667eea;
-            font-weight: 500;
-        }
+.procedure-instruction {
+    background: #f0f4ff;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    color: #667eea;
+    font-weight: 500;
+    font-size: 0.8em;
+}
 
-        .procedure-area {
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-        }
+.procedure-area {
+    display: flex;
+    gap: 15px;
+}
 
-        .steps-pool {
-            flex: 1;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            min-height: 300px;
-        }
+.steps-pool, .drop-zone {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 150px;
+    max-height: 150px;
+    overflow-y: auto;
+}
 
-        .steps-pool h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
+.steps-pool h3, .drop-zone h3 {
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
 
-        .drop-zone {
-            flex: 1;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 3px dashed #ddd;
-            min-height: 300px;
-        }
+.drop-zone {
+    border: 2px dashed #ddd;
+}
 
-        .drop-zone h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
+.drop-zone.drag-over {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
 
-        .drop-zone.drag-over {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
+.step-card {
+    background: white;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    cursor: move;
+    border-left: 3px solid #667eea;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    font-size: 0.8em;
+}
 
-        .step-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            cursor: move;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+.step-card:hover {
+    transform: translateY(-2px);
+}
 
-        .step-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+.step-card.dragging {
+    opacity: 0.5;
+}
 
-        .step-card.dragging {
-            opacity: 0.5;
-        }
+.check-btn {
+    margin-top: 10px;
+    width: 100%;
+}
 
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
+.procedure-feedback {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.8em;
+    display: none;
+}
 
-        .step-text {
-            flex: 1;
-            color: #333;
-        }
+.procedure-feedback.show {
+    display: block;
+    animation: slideDown 0.3s;
+}
 
-        .check-btn {
-            margin-top: 20px;
-            width: 100%;
-        }
+.procedure-feedback.correct {
+    background: #d1fae5;
+    color: #065f46;
+    border-left: 3px solid #10b981;
+}
 
-        .procedure-feedback {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: 500;
-            display: none;
-        }
+.procedure-feedback.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 3px solid #ef4444;
+}
 
-        .procedure-feedback.show {
-            display: block;
-            animation: slideDown 0.3s;
-        }
+.victory {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    margin-top: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    display: none;
+}
 
-        .procedure-feedback.correct {
-            background: #d1fae5;
-            color: #065f46;
-            border-left: 4px solid #10b981;
-        }
+.victory.show {
+    display: block;
+    animation: slideDown 0.5s;
+}
 
-        .procedure-feedback.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-            border-left: 4px solid #ef4444;
-        }
+.victory h2 {
+    color: #10b981;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
 
-        .victory {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none;
-        }
+.victory-emoji {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
 
-        .victory.show {
-            display: block;
-            animation: slideDown 0.5s;
-        }
-
-        .victory h2 {
-            color: #10b981;
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .victory-emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 968px) {
-            .scenarios-grid {
-                grid-template-columns: 1fr;
-            }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
             .procedure-area {
                 flex-direction: column;
