@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scenario e Procedure 231 - Modulo 5</title>
     <style>
-       * {
+      * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 1. MODIFICA: Body per centrare il viewport */
+/* 1. Body: Centra il viewport 800x550 */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    /* Rimuovi il padding originale per centrare il viewport */
+    /* Rimuove il padding originale */
     padding: 0; 
-    /* Centra il contenuto 800x550 */
+    
+    /* Centra il div #viewport-800x550 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,29 +27,32 @@ body {
     overflow: hidden;
 }
 
-/* 2. NUOVO: Definisce l'area di visualizzazione Fissa (800 x 550) */
+/* 2. NUOVO: Definisce l'area visibile (800x550) */
 #viewport-800x550 {
     width: 800px; /* Larghezza target */
     height: 550px; /* Altezza target */
     overflow: hidden; 
     position: relative;
-    /* Sposta il padding di 20px che era sul body qui per mantenere lo spazio intorno al contenuto */
+    /* Riporta qui il padding originale del body */
     padding: 20px; 
 }
 
 
-/* 3. MODIFICA: Contenitore originale: Applica Scaling e Centramento */
+/* 3. MODIFICA CRITICA: Contenitore originale da 1200px */
 .container {
-    max-width: 1200px; /* Mantenuta larghezza originale di design */
-    margin: 0; /* Rimosso margin: 0 auto; non serve più */
+    /* Forziamo la larghezza di design per il calcolo del centramento */
+    width: 1200px; 
+    /* Nota: Rimuoviamo max-width: 1200px e margin: 0 auto; */
     
-    /* TRASFORMAZIONE CHIAVE: Ridimensiona e Centra */
-    /* Fattore di scala S = 0.6667 (800/1200) */
-    /* Traslazione T = -300px (calcolo di centramento) */
-    transform: scale(0.6667) translateX(-300px);
-    transform-origin: top left;
-    position: relative;
-    height: 100%; /* Permette di riempire l'altezza del viewport scalato */
+    /* METODO UNIVERSALE DI CENTRAMENTO ASSOLUTO */
+    position: absolute; 
+    top: 50%; /* Sposta l'origine al 50% verticale */
+    left: 50%; /* Sposta l'origine al 50% orizzontale */
+
+    /* Scala (0.6667) E Trasla (il -50% sposta indietro l'elemento per centrarlo) */
+    transform: translate(-50%, -50%) scale(0.6667);
+    
+    margin: 0; 
 }
 
 /* IL RESTO DEL TUO CSS RIMANE ESATTAMENTE COME ORIGINALE */
